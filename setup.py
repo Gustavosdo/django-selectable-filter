@@ -4,7 +4,6 @@ setup(
     name='django-selectable-filter',
     version='0.1.0',
     description='The filterspec to the Django administration that allow you to filter records using the resources of django-selectable library',
-    long_description=open('README.rst').read(-1),
     author='Gustavo Santana de Oliveira',
     author_email='gustavo.sdo@gmail.com',
     url='https://github.com/Gustavosdo/django-selectable-filter',
