@@ -1,4 +1,4 @@
-# django-selectable-filter
+django-selectable-filter
 =======================
 
 Installation
