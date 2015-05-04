@@ -19,3 +19,8 @@ Add selectable_filter to settings.INSTALLED_APP. For this, edit the setup.py fil
         ...
         'selectable_filter'
     )
+
+Inspiration
+------------
+This project was inspired on library django-datefilterspec 
+https://github.com/tzulberti/django-datefilterspec
