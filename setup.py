@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-selectable-filter',
-    version='0.1.1',
+    version='0.1.5',
     description='The filterspec to the Django administration that allow you to filter records using the resources of django-selectable library',
     author='Gustavo Santana de Oliveira',
     author_email='gustavo.sdo@gmail.com',
