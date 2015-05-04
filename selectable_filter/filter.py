@@ -40,9 +40,12 @@ class SelectableFilter(admin.filters.FieldListFilter):
         class_lookup = field_path.title() + "Lookup"
         imported_class = getattr(__import__(package, fromlist=[class_lookup]), class_lookup)
         self.model_lookup = imported_class
-        self.related_name = imported_class.field_related_name
-        self.form_class_selectable = imported_class.form_class_selectable
+        try:
+            self.related_name = imported_class.field_related_name
+        except:
+            self.related_name = None
 
+        self.form_class_selectable = imported_class.form_class_selectable
         self.parameter_name = '%s__icontains' % field_path
         self.verbose_field_name = model._meta.get_field(field_path).verbose_name
         super(SelectableFilter, self).__init__(field, request, params, model, model_admin, field_path)
@@ -71,7 +74,10 @@ class SelectableFilter(admin.filters.FieldListFilter):
             # filter by upto included
             if filter_params.get(self.parameter_name) is not None:
                 lookup_kwarg_upto_value = filter_params.pop(self.parameter_name)
-                filter_params['%s__%s__icontains' % (self.field_path, self.related_name)] = lookup_kwarg_upto_value
+                if self.related_name is None:
+                    filter_params['%s__icontains' % self.field_path] = lookup_kwarg_upto_value
+                else:
+                    filter_params['%s__%s__icontains' % (self.field_path, self.related_name)] = lookup_kwarg_upto_value
 
             return queryset.filter(**filter_params)
         else:
